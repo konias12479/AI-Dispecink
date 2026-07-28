@@ -106,6 +106,14 @@ nav{display:flex;gap:2px;margin:16px 0 0;flex-wrap:wrap}
 .block>h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:400;
   display:flex;justify-content:space-between;gap:12px;align-items:baseline}
 .block>h3 .pozn{font-size:10px;letter-spacing:.1em}
+.stav{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;white-space:nowrap}
+.stav.chybi{background:var(--warn);color:#fff}
+.stav.hotovo{color:var(--accent);border:1px solid var(--accent)}
+.stav.vychozi{color:var(--muted);border:1px solid var(--line)}
+.chybiRam{outline:2px dashed var(--warn);outline-offset:4px}
+.vych{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid currentColor;padding:1px 5px;margin-left:8px;opacity:.75;vertical-align:2px}
+.napoveda{font-size:13px;color:var(--muted);margin:0 0 12px;padding:8px 12px;background:#F2F5F8;border-left:3px solid var(--warn)}
 .block.dvojice>div>h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:400}
 .chip{text-align:left;background:var(--panel);border:1px solid var(--line);padding:10px 12px;cursor:pointer;
   font-family:var(--body);font-size:14px;color:var(--ink);transition:border-color .12s,background .12s}
@@ -373,10 +381,11 @@ pre code{background:none;padding:0;font-size:1em}
       <div class="meta"><span class="kat" id="tKat">—</span><span class="lvl" id="tLvl">—</span><span id="tPoradi">—</span></div>
       <p class="zadani" id="tZadani">Načítám…</p>
       <p class="kontext" id="tKontext"></p>
-      <div class="block"><h3><span>Komu to pošlete</span><span class="pozn">Cena za požadavek při 12 tis. tokenů vstupu</span></h3><div class="chips" id="modelChips"></div></div>
+      <p class="napoveda" id="napovedaVolby">Rozhodujete tři věci: <b>komu to pošlete</b>, <b>kolik uvažování zaplatíte</b> a <b>jestli má hledat na webu</b>. Spodní dvě jsou předvyplněné tím, co váš nástroj dělá, když nic nepřepnete — klidně to změňte. Štítek <b>výchozí</b> ukazuje, co byste dostal bez rozmýšlení.</p>
+      <div class="block"><h3><span>Komu to pošlete <span class="stav chybi" id="stavModel">Vyberte</span></span><span class="pozn">Cena za požadavek při 12 tis. tokenů vstupu</span></h3><div class="chips" id="modelChips"></div></div>
       <div class="block dvojice">
-        <div><h3>Kolik uvažování zaplatíte</h3><div class="efforts" id="effortChips"></div></div>
-        <div><h3>Vyhledávání na webu</h3><div class="webs" id="webChips"></div></div>
+        <div><h3>Kolik uvažování zaplatíte <span class="stav vychozi" id="stavEffort">Výchozí</span></h3><div class="efforts" id="effortChips"></div></div>
+        <div><h3>Vyhledávání na webu <span class="stav vychozi" id="stavWeb">Výchozí</span></h3><div class="webs" id="webChips"></div></div>
       </div>
       <div class="actions">
         <button class="primary" id="btnOdeslat" disabled>Odeslat požadavek</button>
@@ -1036,6 +1045,7 @@ const UROVNE = {1:'Úroveň 1 · základ',2:'Úroveň 2 · složitější zadán
 const PROSTREDI = {
 claude:{
   jm:'Claude', kde:'claude.ai, Claude Code, Cowork',
+  vychEf:'low', vychWeb:'ano', vychModel:'sonnet',   /* co dostanete, když nic nepřepnete */
   popis:'Řada Haiku → Sonnet → Opus → Fable, platí se za tokeny. Trvalé postupy se píšou do skillů.',
   pozn:'Ceny podle ceníku API (Haiku 4.5 1/5, Sonnet 5 3/15, Opus 5 5/25, Fable 5 10/50 USD za milion tokenů), přepočet kurzem 0,92. V předplatném Pro nebo Max platíte paušál — částky pak berte jako míru spotřeby, ne jako fakturu.',
   modely:[
@@ -1058,7 +1068,7 @@ claude:{
   ]
 },
 chatgpt:{
-  jm:'ChatGPT', kde:'chatgpt.com, Codex, ChatGPT Work',
+  jm:'ChatGPT', vychEf:'med', vychWeb:'ano', vychModel:'terra', kde:'chatgpt.com, Codex, ChatGPT Work',
   popis:'Řada GPT-5.6 ve třech úrovních (Luna, Terra, Sol) s posuvníkem uvažování. Trvalé postupy se ukládají do Workspace Agentů.',
   pozn:'Ceny podle ceníku API (Luna 1/6, Terra 2,50/15, Sol 5/30 USD za milion tokenů), přepočet kurzem 0,92. Režim Pro se neúčtuje po tokenech — částka je odhad odpovídající spotřeby. V předplatném Plus či Business platíte paušál.',
   modely:[
@@ -1081,7 +1091,7 @@ chatgpt:{
   ]
 },
 copilot:{
-  jm:'Microsoft Copilot', kde:'Word, Excel, PowerPoint, Outlook, Teams, Cowork',
+  jm:'Microsoft Copilot', vychEf:'med', vychWeb:'ano', vychModel:'chat', kde:'Word, Excel, PowerPoint, Outlook, Teams, Cowork',
   popis:'Model si Copilot často volí sám — vy volíte povrch a hloubku. Silnou stránkou jsou firemní data přes Work IQ.',
   pozn:'V Copilotu neplatíte za požadavek, ale měsíční licenci na uživatele. Částky níž jsou odhad skutečné ceny výpočtu, který nese Microsoft — projeví se u vás jako čekání a jako limity tenantu. Ušetřený náklad je tu hlavně váš čas.',
   modely:[
@@ -2387,16 +2397,20 @@ function vykresliVolby(){
     const pom=ceny[i]/cmax, tridaB=pom<=0.34?'':(pom<=0.7?'w':'e');
     const kdy=m.kdy.split(/[.,]/)[0].trim();
     return '<button class="chip" aria-pressed="false" data-model="'+m.id+'">'+
-    '<span class="mnm"><span class="nm">'+m.jm+'</span><span class="vd">'+kdy+'</span></span>'+
+    '<span class="mnm"><span class="nm">'+m.jm+(m.id===(E().vychModel||'')?'<span class="vych">výchozí</span>':'')+
+    '</span><span class="vd">'+kdy+'</span></span>'+
     '<span class="tr">'+TRIDY[m.tr]+'</span>'+
     '<span class="lad"><i class="'+tridaB+'" style="width:'+Math.max(3,pom*100).toFixed(0)+'%"></i></span>'+
     '<span class="coins">'+fmt(ceny[i])+'</span></button>';}).join('');
+  const vE=E().vychEf||'med', vW=E().vychWeb||'ne';
   $('#effortChips').innerHTML=E().uvaz.map(e=>
     '<button class="chip" aria-pressed="false" data-effort="'+e.id+'">'+
-    '<span class="nm">'+e.jm+'</span><span class="vd">'+(e.out/1000)+' tis. tokenů · '+e.pop+'</span></button>').join('');
+    '<span class="nm">'+e.jm+(e.id===vE?'<span class="vych">výchozí</span>':'')+'</span>'+
+    '<span class="vd">'+(e.out/1000)+' tis. tokenů · '+e.pop+'</span></button>').join('');
   $('#webChips').innerHTML=[['ne','Vypnuto','z paměti'],['ano','Zapnuto','dohledá stav']].map(w=>
     '<button class="chip" aria-pressed="false" data-web="'+w[0]+'">'+
-    '<span class="nm">'+w[1]+'</span><span class="vd">'+w[2]+'</span></button>').join('');
+    '<span class="nm">'+w[1]+(w[0]===vW?'<span class="vych">výchozí</span>':'')+'</span>'+
+    '<span class="vd">'+w[2]+'</span></button>').join('');
 }
 $('#modelChips').addEventListener('click',ev=>{const b=ev.target.closest('[data-model]');if(!b||zodpovezeno)return;
   volbaModel=b.dataset.model;oznac('#modelChips','data-model',volbaModel);zkontrolujStav();});
@@ -2405,8 +2419,20 @@ $('#effortChips').addEventListener('click',ev=>{const b=ev.target.closest('[data
 $('#webChips').addEventListener('click',ev=>{const b=ev.target.closest('[data-web]');if(!b||zodpovezeno)return;
   volbaWeb=b.dataset.web;oznac('#webChips','data-web',volbaWeb);zkontrolujStav();});
 function oznac(sel,attr,val){$(sel).querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.getAttribute(attr)===val?'true':'false'));}
+function znac(id,volba,vych,jmVybrano){
+  const el=$(id); if(!el)return;
+  if(!volba){el.className='stav chybi';el.textContent='Vyberte';}
+  else if(vych&&volba===vych){el.className='stav vychozi';el.textContent='Výchozí';}
+  else {el.className='stav hotovo';el.textContent=jmVybrano||'Změněno';}
+}
 function zkontrolujStav(){
-  $('#btnOdeslat').disabled=!(volbaModel&&volbaEffort&&volbaWeb);
+  const hotovoVse=!!(volbaModel&&volbaEffort&&volbaWeb);
+  $('#btnOdeslat').disabled=!hotovoVse;
+  if(!zodpovezeno) $('#btnOdeslat').textContent=hotovoVse?'Odeslat požadavek':'Vyberte, komu to pošlete';
+  znac('#stavModel',volbaModel,E().vychModel,'Vybráno');
+  znac('#stavEffort',volbaEffort,E().vychEf||'med');
+  znac('#stavWeb',volbaWeb,E().vychWeb||'ne');
+  $('#modelChips').classList.toggle('chybiRam',!volbaModel);
   const el=$('#volbaCena');
   if(volbaModel&&volbaEffort){
     const c=cena(modelById(volbaModel),volbaEffort);
@@ -2421,11 +2447,16 @@ function nactiUkol(){
   $('#tPoradi').textContent='Požadavek '+(idx+1)+' / '+poradi.length;
   prekresliOsu();
   $('#tZadani').textContent=t.z;$('#tKontext').textContent=t.k;
-  volbaModel=null;volbaEffort=null;volbaWeb=null;zodpovezeno=false;
-  oznac('#modelChips','data-model',null);oznac('#effortChips','data-effort',null);oznac('#webChips','data-web',null);
-  $('#btnOdeslat').textContent='Odeslat požadavek';$('#btnOdeslat').disabled=true;
+  volbaModel=null;
+  volbaEffort=E().vychEf||'med'; volbaWeb=E().vychWeb||'ne';
+  zodpovezeno=false;
+  oznac('#modelChips','data-model',null);
+  oznac('#effortChips','data-effort',volbaEffort);
+  oznac('#webChips','data-web',volbaWeb);
+  $('#btnOdeslat').disabled=true;
   $('#volbaCena').textContent='';
   $('#verdiktBox').innerHTML='';
+  zkontrolujStav();
 }
 function optimum(t){
   let nej=null;
@@ -2518,6 +2549,7 @@ function vyhodnot(){
    'Vaše volba: '+m.jm+' · '+uv(volbaEffort).jm+' · vyhledávání '+(volbaWeb==='ano'?'zapnuto':'vypnuto')+' — '+fmt(moje)+webRadek+radekRozdil+'</div></div>';
 
   zodpovezeno=true;$('#btnOdeslat').disabled=false;
+  $('#modelChips').classList.remove('chybiRam');
   $('#btnOdeslat').textContent=(idx+1<poradi.length)?'Další požadavek':'Uzavřít směnu';
   prekresliUkazatele();
 
