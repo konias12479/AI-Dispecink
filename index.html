@@ -63,14 +63,38 @@ nav{display:flex;gap:2px;margin:16px 0 0;flex-wrap:wrap}
 .modecard h4{font-family:var(--disp);text-transform:uppercase;font-size:17px;margin:0 0 4px}
 .modecard p{margin:0;font-size:13.5px;color:var(--muted)}
 .modecard .best{display:block;margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.gauges{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:6px}
-.gauge{background:var(--panel);border:1px solid var(--line);padding:12px 14px;box-shadow:var(--shadow)}
-.gauge .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
-.gauge .val{font-family:var(--disp);font-size:26px;font-weight:700;line-height:1.1;margin-top:2px}
-.bar{height:6px;background:#DDE3E9;margin-top:8px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .5s cubic-bezier(.2,.8,.2,1)}
-.bar.cost i{background:var(--warn)}
-.gauge .hint{font-size:12px;color:var(--muted);margin-top:6px}
+.gauges{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.gauge{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--accent);padding:16px 18px 14px;box-shadow:var(--shadow)}
+.gauge.cost{border-top-color:var(--warn)}
+.gauge .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.gauge .lbl .zvyr{color:var(--warn);font-weight:600;letter-spacing:.1em}
+.gauge .big{display:flex;align-items:baseline;gap:14px;margin-top:10px;flex-wrap:wrap}
+.gauge .val{font-family:var(--disp);font-size:56px;font-weight:700;line-height:.86;letter-spacing:-.02em}
+.gauge .val small{font-size:26px;font-weight:600}
+.gauge.cost .val{color:var(--warn)}
+.gauge .vedle{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.6}
+.bar{height:10px;background:var(--paper);border:1px solid var(--line);margin-top:12px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);width:0;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.bar u{position:absolute;top:0;bottom:0;left:0;width:0;background:repeating-linear-gradient(135deg,var(--warn) 0 4px,#E7C88A 4px 8px)}
+.bar .cil{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+.gauge .hint{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.5}
+.gauge .hint b{color:var(--ink);font-weight:600}
+/* --- osa směny --- */
+.osa{background:var(--panel);border:1px solid var(--line);padding:12px 16px 14px;margin-bottom:14px;box-shadow:var(--shadow)}
+.osahl{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.osahl b{color:var(--ink);font-weight:600}
+.osagrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}
+.useg{display:flex;flex-direction:column;gap:6px}
+.useg .cells{display:flex;gap:3px}
+.useg .cells i{flex:1;height:14px;background:var(--paper);border:1px solid var(--line)}
+.useg .cells i.ok{background:var(--accent);border-color:var(--accent)}
+.useg .cells i.warn{background:var(--warn);border-color:var(--warn)}
+.useg .cells i.bad{background:var(--err);border-color:var(--err)}
+.useg .cells i.skip{background:var(--muted);border-color:var(--muted)}
+.useg .cells i.ted{background:var(--ink);border-color:var(--ink)}
+.useg .jm{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:5px}
+.useg.akt .jm{color:var(--ink);font-weight:600;border-top:2px solid var(--ink);padding-top:4px}
+.useg.pozdeji{opacity:.5}
 .predpoklad{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--muted);margin:0 0 18px}
 .slip{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--ink);box-shadow:var(--shadow);padding:18px 20px}
 .slip .meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -79,18 +103,44 @@ nav{display:flex;gap:2px;margin:16px 0 0;flex-wrap:wrap}
 .zadani{font-size:19px;line-height:1.45;margin:12px 0 6px;font-weight:500}
 .kontext{color:var(--muted);font-size:14px;margin:0}
 .block{margin-top:18px}
-.block>h3{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:400}
-.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.block>h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:400;
+  display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.block>h3 .pozn{font-size:10px;letter-spacing:.1em}
+.block.dvojice>div>h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:400}
 .chip{text-align:left;background:var(--panel);border:1px solid var(--line);padding:10px 12px;cursor:pointer;
-  font-family:var(--body);font-size:14px;color:var(--ink);display:flex;justify-content:space-between;gap:8px;align-items:center;transition:border-color .12s,background .12s}
+  font-family:var(--body);font-size:14px;color:var(--ink);transition:border-color .12s,background .12s}
 .chip:hover{border-color:var(--ink)}
-.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.chip .nm{font-weight:500}
-.chip .vd{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;opacity:.65}
-.coins{font-family:var(--mono);font-size:11px;letter-spacing:.1em;opacity:.7;white-space:nowrap}
-.efforts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
-.webs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;max-width:440px}
+.chip .nm{font-weight:600;font-size:15px;display:block}
+.chip .vd{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+/* modely jako cenový žebřík */
+.chips{display:flex;flex-direction:column;gap:6px}
+.chips .chip{display:grid;grid-template-columns:1fr 88px 1fr 92px;grid-template-areas:"a t b c";
+  align-items:center;gap:16px;padding:12px 16px}
+.chips .mnm{grid-area:a}
+.chips .tr{grid-area:t;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.chips .lad{grid-area:b;height:12px;background:var(--paper);border:1px solid var(--line)}
+.chips .lad i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.chips .lad i.w{background:var(--warn)}
+.chips .lad i.e{background:var(--err)}
+.chips .coins{grid-area:c;font-family:var(--disp);font-weight:600;font-size:19px;text-align:right;white-space:nowrap}
+.chips .chip[aria-pressed="true"]{border:2px solid var(--accent);background:#F2F7F6;padding:11px 15px}
+.chips .chip[aria-pressed="true"] .nm,.chips .chip[aria-pressed="true"] .coins{color:var(--accent)}
+.chips .chip[aria-pressed="true"] .vd{color:var(--accent)}
+.chips .chip[aria-pressed="true"] .nm::before{content:"";display:inline-block;width:9px;height:9px;background:var(--accent);margin-right:8px}
+.coins{font-family:var(--mono);font-size:11px;letter-spacing:.1em;white-space:nowrap}
+/* uvažování a web jako dlaždice */
+.dvojice{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.efforts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.webs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.efforts .chip,.webs .chip{padding:13px 15px}
+.efforts .chip[aria-pressed="true"]{background:var(--ink);color:#fff;border:2px solid var(--ink);padding:12px 14px}
+.efforts .chip[aria-pressed="true"] .vd{color:#9FB0BD}
+.webs .chip[aria-pressed="true"]{border:2px solid var(--accent);background:#F2F7F6;padding:12px 14px}
+.webs .chip[aria-pressed="true"] .nm,.webs .chip[aria-pressed="true"] .vd{color:var(--accent)}
+.actions{border-top:1px solid var(--line);padding-top:18px}
+.volbacena{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.volbacena b{color:var(--ink);font-weight:600}
 .actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;align-items:center}
 button.primary{font-family:var(--disp);text-transform:uppercase;letter-spacing:.06em;font-weight:700;font-size:15px;
   background:var(--accent);color:#fff;border:none;padding:12px 22px;cursor:pointer}
@@ -98,12 +148,25 @@ button.primary:disabled{background:#B3BEC7;cursor:not-allowed}
 button.ghost{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:none;
   border:1px solid var(--line);padding:11px 14px;cursor:pointer;color:var(--muted)}
 button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.verdict{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:18px 20px;margin-top:18px;position:relative}
-.stamp{position:absolute;right:16px;top:14px;font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.08em;
-  font-size:17px;padding:5px 12px;border:3px solid currentColor;transform:rotate(-7deg);opacity:.9;animation:stampIn .28s cubic-bezier(.2,1.4,.4,1)}
-@keyframes stampIn{from{transform:rotate(-7deg) scale(2.1);opacity:0}to{transform:rotate(-7deg) scale(1);opacity:.9}}
+.verdict{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--accent);box-shadow:var(--shadow);padding:22px 24px;margin-top:18px;position:relative}
+.verdict.v-warn{border-top-color:var(--warn)}
+.verdict.v-bad{border-top-color:var(--err)}
+.vhl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.vstat{display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin:16px 0}
+.vstat>div>span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.vstat>div>b{font-family:var(--disp);font-weight:700;font-size:28px;line-height:1.1;display:block}
+.vstat>div>b small{font-size:15px;color:var(--muted);font-weight:600}
+.vstat .c-good{color:var(--accent)}.vstat .c-warn{color:var(--warn)}.vstat .c-bad{color:var(--err)}
+.vcols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px}
+.vcols b{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;font-weight:400;margin-bottom:6px}
+.vcols p{margin:0;font-size:14px;line-height:1.55}
+.stamp{position:absolute;right:20px;top:18px;border:2px solid currentColor;padding:3px;
+  transform:rotate(-3deg);animation:stampIn .28s cubic-bezier(.2,1.4,.4,1)}
+.stamp i{display:block;border:1px solid currentColor;padding:7px 16px;font-style:normal;
+  font-family:var(--mono);font-weight:600;font-size:17px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+@keyframes stampIn{from{transform:rotate(-3deg) scale(2.1);opacity:0}to{transform:rotate(-3deg) scale(1);opacity:1}}
 .s-good{color:var(--accent)}.s-warn{color:var(--warn)}.s-bad{color:var(--err)}
-.verdict h4{font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em;font-size:15px;margin:0 0 10px;padding-right:140px}
+.verdict h4{font-family:var(--disp);font-weight:700;font-size:25px;letter-spacing:0;margin:0;padding-right:180px;text-transform:none}
 .duvod{margin:0 0 10px;max-width:70ch}
 .duvod b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;font-weight:400;margin-bottom:2px}
 .ucet{font-family:var(--mono);font-size:12px;background:#F2F5F8;border-left:3px solid var(--accent);padding:10px 12px;margin:12px 0;line-height:1.7}
@@ -131,8 +194,37 @@ h3.pod{font-family:var(--disp);text-transform:uppercase;font-size:16px;margin:20
 .note{font-size:13px;color:var(--muted);max-width:72ch;margin-top:14px}
 .uc{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;margin-top:6px}
 .uccard{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--accent);padding:16px 18px;box-shadow:var(--shadow)}
-.uccard .cislo{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-.uccard h3{font-family:var(--disp);text-transform:uppercase;font-size:18px;margin:4px 0 8px;letter-spacing:.01em}
+.uccard .uchd{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.uccard .cis{font-family:var(--disp);font-weight:700;font-size:22px;color:var(--line);line-height:1}
+.uccard .kchip{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:3px 7px}
+.uccard h3{font-family:var(--disp);text-transform:uppercase;font-size:19px;margin:10px 0 10px;letter-spacing:.01em;line-height:1.2}
+.uccard dl{border-top:1px solid var(--line);padding-top:10px}
+/* --- co už takhle běží --- */
+.praxe{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:6px}
+.pcard{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);padding:16px 18px;box-shadow:var(--shadow)}
+.pcard h3{font-family:var(--disp);text-transform:uppercase;font-size:17px;margin:0 0 8px;letter-spacing:.01em;line-height:1.2}
+.pcard p{margin:0;font-size:14px;line-height:1.5}
+.pcard .vysledek{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.pcard .vysledek b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:400;margin-bottom:3px}
+/* --- žebřík automatizace --- */
+.zebrik{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px;counter-reset:z}
+.zcard{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--line);padding:14px 16px;counter-increment:z;position:relative}
+.zcard:nth-child(4){border-top-color:var(--accent)}
+.zcard::before{content:counter(z);font-family:var(--disp);font-weight:700;font-size:20px;color:var(--line);position:absolute;right:14px;top:10px}
+.zcard h4{font-family:var(--disp);text-transform:uppercase;font-size:15px;margin:0 0 6px;padding-right:26px;line-height:1.2}
+.zcard p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.zcard .kdy{display:block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* --- karta agenta --- */
+.agent{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--ink);padding:18px 20px;box-shadow:var(--shadow);margin-top:6px}
+.agent .hl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.agent h3{font-family:var(--disp);text-transform:uppercase;font-size:20px;margin:4px 0 6px}
+.agent .ucel{margin:0 0 12px;font-size:14px;color:var(--muted)}
+.agent ol{margin:0;padding-left:20px;font-size:14px;line-height:1.6}
+.agent .paticka{display:flex;gap:26px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.agent .paticka div{font-size:13.5px}
+.agent .paticka b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:2px}
+.uccard dt.zisk-l{color:var(--accent)}
+.uccard dt.pozor-l{color:var(--err)}
 .uccard .zadani-uk{font-family:var(--mono);font-size:12px;line-height:1.5;background:#F2F5F8;border-left:3px solid var(--ink);padding:8px 10px;margin-bottom:10px}
 .uccard dl{margin:0;font-size:13.5px}
 .uccard dt{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:8px}
@@ -163,8 +255,16 @@ pre{background:var(--panel);border:1px solid var(--line);border-left:3px solid v
   font-family:var(--mono);font-size:12.5px;line-height:1.55;box-shadow:var(--shadow)}
 code{font-family:var(--mono);font-size:.92em;background:#DFE5EB;padding:1px 4px}
 pre code{background:none;padding:0;font-size:1em}
+@media (max-width:760px){.vcols{grid-template-columns:1fr}.dvojice{grid-template-columns:1fr}
+  .osagrid{grid-template-columns:1fr}.useg.pozdeji{opacity:.6}}
 @media (max-width:560px){h1{font-size:26px}.gauges{grid-template-columns:1fr}
-  .stamp{position:static;display:inline-block;margin-bottom:10px}.verdict h4{padding-right:0}}
+  .gauge .val{font-size:44px}
+  .chips .chip{grid-template-columns:1fr 88px;grid-template-areas:"a c" "b b";gap:8px 12px}
+  .chips .tr{display:none}
+  .efforts{grid-template-columns:1fr}
+  .verdict h4{padding-right:0;font-size:21px}
+  .stamp{position:static;display:inline-block;margin-bottom:12px;transform:none}
+  .vstat{gap:20px}.vstat>div>b{font-size:24px}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
 </head>
@@ -205,6 +305,12 @@ pre code{background:none;padding:0;font-size:1em}
     <li><b>Rozhodnutí, za které ručíte.</b> Podklad ano, doporučení ano, podpis ne.</li>
     <li><b>Osobní a citlivá data mimo schválený nástroj.</b> Než něco vložíte, ověřte si, co má vaše firma povolené.</li>
   </ul>
+  <h2>Co už takhle běží</h2>
+  <p class="note" style="margin-top:0">Tři případy z vašeho oboru, kde to není o jednorázovém dotazu, ale o práci, která se opakuje. Právě u opakované práce se to vyplatí nejvíc — jednou se domluví postup a pak už jen běží.</p>
+  <div class="praxe" id="praxeKarty"></div>
+  <h2>Kam to posunout dál</h2>
+  <p class="note" style="margin-top:0">Čtyři stupně od jednorázového dotazu po agenta, který běží sám. Vyšší stupeň není lepší — je vhodný, až když se práce opakuje. Podrobnosti k zápisu postupů najdete v záložce <b>Skills a agenti</b>.</p>
+  <div class="zebrik" id="zebrikBox"></div>
   <h2>Co z toho reálně vypadne</h2>
   <table>
     <thead><tr><th>Práce</th><th>Ručně</th><th>S nástrojem</th><th>Co dělá člověk</th></tr></thead>
@@ -244,28 +350,39 @@ pre code{background:none;padding:0;font-size:1em}
       <button class="ghost" id="btnZmenitEnv" style="padding:6px 10px">Změnit</button></div>
     <div class="gauges" id="gaugeBox">
       <div class="gauge">
-        <div class="lbl"><span>Trefa</span><span id="gPocet">0 / 0</span></div>
-        <div class="val" id="gPresnost">—</div><div class="bar"><i id="gPresnostBar"></i></div>
+        <div class="lbl"><span>Trefa</span><span id="gPocet">0 z 0 požadavků</span></div>
+        <div class="big"><div class="val" id="gPresnost">—</div>
+          <div class="vedle">Cíl <span id="gCil">75</span> %<br><span id="gMinula">Zatím nehráno</span></div></div>
+        <div class="bar"><i id="gPresnostBar"></i><span class="cil" id="gCilRyska"></span></div>
         <div class="hint" id="gPresnostHint">Kolik bodů z možných jste zatím získal.</div>
       </div>
-      <div class="gauge">
-        <div class="lbl"><span>Útrata</span><span id="gNasobek">—</span></div>
-        <div class="val" id="gNaklad">0,00 €</div><div class="bar cost"><i id="gNakladBar"></i></div>
+      <div class="gauge cost">
+        <div class="lbl"><span>Útrata</span><span class="zvyr" id="gNasobek">—</span></div>
+        <div class="big"><div class="val" id="gNaklad">0,00 €</div>
+          <div class="vedle" id="gVedle">Optimum —<br>Rozdíl —</div></div>
+        <div class="bar"><i id="gNakladBar"></i><u id="gNakladNavic"></u></div>
         <div class="hint" id="gNakladHint">Kolik by stálo odbavit tyhle požadavky vaší volbou.</div>
       </div>
+    </div>
+    <div class="osa" id="osaBox">
+      <div class="osahl"><span>Průběh směny</span><span>Požadavek <b id="osaPoz">1</b> / <span id="osaCelkem">24</span></span></div>
+      <div class="osagrid" id="osaGrid"></div>
     </div>
     <p class="predpoklad" id="predpoklad"></p>
     <div class="slip">
       <div class="meta"><span class="kat" id="tKat">—</span><span class="lvl" id="tLvl">—</span><span id="tPoradi">—</span></div>
       <p class="zadani" id="tZadani">Načítám…</p>
       <p class="kontext" id="tKontext"></p>
-      <div class="block"><h3>Komu to pošlete</h3><div class="chips" id="modelChips"></div></div>
-      <div class="block"><h3>Kolik uvažování zaplatíte</h3><div class="efforts" id="effortChips"></div></div>
-      <div class="block"><h3>Vyhledávání na webu</h3><div class="webs" id="webChips"></div></div>
+      <div class="block"><h3><span>Komu to pošlete</span><span class="pozn">Cena za požadavek při 12 tis. tokenů vstupu</span></h3><div class="chips" id="modelChips"></div></div>
+      <div class="block dvojice">
+        <div><h3>Kolik uvažování zaplatíte</h3><div class="efforts" id="effortChips"></div></div>
+        <div><h3>Vyhledávání na webu</h3><div class="webs" id="webChips"></div></div>
+      </div>
       <div class="actions">
         <button class="primary" id="btnOdeslat" disabled>Odeslat požadavek</button>
         <button class="ghost" id="btnPreskocit">Přeskočit</button>
         <button class="ghost" id="btnReset">Začít znovu</button>
+        <span class="volbacena" id="volbaCena"></span>
       </div>
     </div>
     <div id="verdiktBox"></div>
@@ -324,6 +441,10 @@ pre code{background:none;padding:0;font-size:1em}
 </section>
 
 <section id="postupy" class="hidden">
+  <h2>Agent pro váš obor</h2>
+  <p class="note" style="margin-top:0">Takhle by mohl vypadat první agent pro obor <b id="agentObor">—</b>. Není to hotové řešení k nasazení — je to ukázka, jak se popisuje práce, která se má dít pravidelně a sama.</p>
+  <div class="agent" id="agentBox"></div>
+  <p class="note">Než něco takového nasadíte, ověřte si dvě věci: jestli má nástroj u vás povolený přístup k těm zdrojům, a jestli výsledek někdo kontroluje. Agent bez kontroly opakuje chybu pravidelně a spolehlivě.</p>
   <h2>Trvalé postupy: skills a agenti</h2>
   <p class="note" style="margin-top:0">Tři jména pro jednu věc: zapsat jednou, jak se u vás dělá určitá práce, aby to nástroj nemusel pokaždé hádat. Liší se hlavně tím, jak moc toho umí sám vykonat.</p>
   <table>
@@ -793,6 +914,115 @@ const PRIPADY=[
  pozor:'Bez zapnutého vyhledávání a bez odkazů je to odhad, ne rešerše.'}
 ];
 
+
+/* =====================================================================
+   0b) CO UŽ TAKHLE BĚŽÍ — praktické případy a automatizace po oborech
+   [co, jak to funguje, co to udělalo]
+   ===================================================================== */
+const PRAXE={
+nakup:[['Hlídač lhůt v rámcových smlouvách','Jednou měsíčně projde složku se smlouvami a vypíše, kterým do 90 dnů končí platnost nebo běží lhůta na odvolání ceny.','Přestaly propadat opce. Ruční kontrola ve složce se dělala jednou za čtvrt roku, a ne vždycky.'],
+ ['Předvyplněné srovnání nabídek','Do tabulky vytáhne z PDF cenu, lhůty, záruky a platební podmínky. Nákupčí jen dorovná kritéria a rozhodne.','Z půldne přepisování je dvacet minut. Hlavní zisk je, že se srovnává stejně pokaždé.'],
+ ['První čtení smlouvy před právníkem','Označí odchylky od firemní šablony a chybějící ujednání. Právník dostane seznam, ne šedesát stran.','Právní kontrola se zkrátila na polovinu a přestaly se vracet smlouvy kvůli banalitám.']],
+admin:[['Zápis a úkoly z porady','Z nahrávky nebo poznámek udělá zápis, vytáhne úkoly s termíny a jmény a pošle je do sdíleného seznamu.','Zápis odchází týž den místo za tři dny — a lidé v něm najdou svoje úkoly.'],
+ ['Sjednocení podkladů před poradou','Posbírá dokumenty z několika míst a udělá z nich jednu stránku shrnutí s odkazy na zdroje.','Vedoucí čte jednu stránku místo osmi příloh.'],
+ ['Odpovědi na opakované dotazy','Ze směrnic a předpisů odpovídá na běžné dotazy zaměstnanců a vždy přiloží odkaz na zdroj.','Ubyly telefonáty na sekretariát. Na co odpověď v předpisu není, se hned pozná.']],
+finance:[['Komentáře k odchylkám','Z tabulky uzávěrky napíše návrh komentáře pro každé středisko: příčina, dopad, opatření.','Uzávěrka se uzavírá o den dřív. Účetní opravuje texty místo psaní od nuly.'],
+ ['Kontrola dokladů před zaúčtováním','Prochází doklady proti seznamu náležitostí a označí ty, kterým něco chybí.','Míň vratek od auditora a míň dohledávání zpětně.'],
+ ['Čtení auditní zprávy','Vytáhne zjištění, termíny nápravy a odpovědné osoby do tabulky.','Z hodinového čtení je pět minut a nikdo nepřehlédne termín.']],
+it:[['Oznámení uživatelům','Z technického popisu odstávky udělá text bez žargonu, se jasným postupem pro uživatele.','Ubyly tikety typu „co s tím mám dělat".'],
+ ['Denní přehled chyb z logů','Skript posbírá chyby za posledních 24 hodin, seskupí je podle typu a pošle přehled.','Chyby se řeší podle četnosti, ne podle toho, kdo nahlásil hlasitěji.'],
+ ['Kontrola účtů proti personálním datům','Porovná seznam účtů se seznamem zaměstnanců a označí účty bez vlastníka.','Osiřelé účty se našly do hodiny místo při roční revizi.']],
+vedeni:[['Podklad na poradu vedení','Ze zdrojů posbírá čísla a napíše návrh podkladu se třemi hlavními sděleními.','Příprava z půldne na hodinu. Diskuse se vede o rozhodnutí, ne o formátu.'],
+ ['Příprava hodnoticích pohovorů','Z poznámek za rok sestaví osnovu: co se povedlo, co ne, na čem pracovat.','Pohovory jsou konkrétnější, protože se vychází z celého roku, ne z posledního měsíce.'],
+ ['Sledování úkolů napříč projekty','Ze zápisů vytáhne úkoly, spáruje je podle odpovědných osob a označí ty po termínu.','Úkoly se přestaly ztrácet mezi zápisy.']],
+sklad:[['Hlídání expirací a ležáků','Týdně projde skladové karty a vypíše položky pod 30 dní expirace a bez pohybu přes 180 dní.','Odpisy klesly, protože se o blížící se expiraci ví s předstihem.'],
+ ['Reklamace přeprav','Z fotek, CMR listu a zápisu o škodě sestaví reklamaci s odkazy na lhůty.','Reklamace odchází v lhůtě a s podklady — úspěšnost výrazně vzrostla.'],
+ ['Třídění příčin škod','Roztřídí zápisy o škodách podle příčiny a připraví přehled na jednání s přepravci.','Poprvé bylo vidět, že polovina škod padá na jeden typ obalu.']],
+obchod:[['Příprava na schůzku','Před schůzkou sestaví přehled o zákazníkovi: co odebírá, co se změnilo, co je ve zprávách.','Obchodník jde na schůzku připravený i bez hodinové rešerše.'],
+ ['Nabídky z ceníku','Z ceníku a parametrů poptávky připraví návrh nabídky včetně marže a upozornění pod limitem.','Nabídka odchází týž den. Ubylo obchodů pod schválenou marží.'],
+ ['Pořádek v CRM','Sjednotí názvy firem, spáruje duplicity a označí obchody bez aktivity přes 30 dní.','Reporty konečně sedí a nikdo je nemusí ručně opravovat.']],
+hr:[['Inzeráty a odpovědi uchazečům','Z popisu pozice napíše inzerát a připraví tři stupně odpovědí uchazečům.','Odpovědi odcházejí všem a do týdne, ne jen finalistům.'],
+ ['Osnova zaškolení','Z popisu pozice a seznamu systémů sestaví plán prvních tří měsíců s kontrolními body.','Nováček ví, co ho čeká, a vedoucí nemusí plán pokaždé vymýšlet.'],
+ ['Souhrn průzkumu spokojenosti','Roztřídí stovky volných odpovědí do témat a vypíše, co se opakuje.','Z dat se dá vyjít při poradě místo dojmů.']],
+controlling:[['Návrhy komentářů k reportu','Ke každé odchylce nad pět procent napíše návrh komentáře a otázku pro majitele střediska.','Vedoucí středisek odpovídají na konkrétní otázku, ne na tabulku.'],
+ ['Zařazení nákladů','Doplní střediska a kategorie podle číselníku a vypíše, co nejde jednoznačně zařadit.','Ruční třídění z celého dne na hodinu a jasný seznam sporných položek.'],
+ ['Scénáře forecastu','Ze zadaných předpokladů spočítá varianty a napíše, který předpoklad scénář zlomí jako první.','Diskuse na poradě je o předpokladech, ne o číslech.']],
+dane:[['Sledování novel','Hlídá změny předpisů a upozorní jen na ty, které se týkají našich plnění.','Nikdo už nečte celé sbírky. Změna se zachytí v den vyhlášení.'],
+ ['Kontrola náležitostí dokladů','Prochází doklady a označí chybějící údaje ještě před podáním.','Ubyly výzvy k doplnění a s nimi i lhůty na odpověď.'],
+ ['První verze odpovědi na výzvu','Sestaví strukturu odpovědi po bodech výzvy s odkazy na doklady.','Poradce kontroluje hotovou kostru místo aby ji psal.']],
+pohledavky:[['Upomínkový běh ve třech stupních','Podle stáří pohledávky připraví text upomínky a vynechá zákazníky s reklamací nebo splátkovým kalendářem.','Upomínky odcházejí pravidelně a přestaly chodit těm, kterým chodit neměly.'],
+ ['Párování plateb','Spáruje výpis s fakturami a vypíše platby, které nesedí.','Účetní řeší dvacet výjimek místo čtyř set řádků.'],
+ ['Podklad pro právníka','Z korespondence a saldokonta sestaví časovou osu příslibů a plateb s odkazy na zdroje.','Předání k vymáhání trvá hodinu místo dvou dnů.']],
+security:[['Posouzení nahlášených e-mailů','Uživatelem nahlášený e-mail rozebere podle znaků phishingu a navrhne, jestli eskalovat.','První posouzení je do minuty. Bezpečák řeší jen sporné případy.'],
+ ['Kontrola matice přístupů','Hledá kombinace rolí, které porušují oddělení pravomocí, a ke každé připíše konkrétní riziko.','Nálezy se dají prosadit, protože jsou popsané v řeči rizika, ne rolí.'],
+ ['Osvětové texty','Ke každému incidentu ve firmě připraví krátké upozornění pro zaměstnance.','Osvěta chodí pravidelně místo jednou ročně na školení.']],
+vyvoj:[['Testy k existujícímu kódu','Ke starším funkcím dopíše jednotkové testy včetně okrajových případů.','Pokrytí testy vzrostlo bez toho, aby to někdo dělal o víkendu.'],
+ ['První kolo code review','Projde diff a označí bezpečnostní a výkonové nálezy seřazené podle závažnosti.','Recenzent řeší návrh a rizika, ne formátování.'],
+ ['Migrace napříč repozitářem','Přechod na novou verzi knihovny provede ve všech souborech a nechá projít testy.','Dvoudenní mravenčí práce na jeden běh — s testy jako kontrolou.']],
+nemovitosti:[['Hlídač revizí a lhůt','Z tabulky revizí spočítá termíny další kontroly a upozorní na ty do 60 dnů.','Přestaly se propadat revize a s nimi i riziko při pojistné události.'],
+ ['Kontrola faktur za opravy','Porovná fakturu s objednávkou a nabídkou a označí položky navíc a odchylky cen.','Reklamace faktur se opírají o tabulku rozdílů, ne o dojem.'],
+ ['Přehled spotřeb energií','Z faktur udělá přehled po budovách a měsících a označí odskoky.','Únik na jedné budově se našel po dvou měsících, ne po ročním vyúčtování.']],
+vse:[['Zápis a úkoly z porady','Z poznámek udělá zápis a vytáhne úkoly s termíny a jmény.','Zápis odchází týž den a lidé v něm najdou svoje úkoly.'],
+ ['Srovnání nabídek do tabulky','Z různě strukturovaných dokumentů vytáhne stejné údaje do jedné tabulky.','Z půldne přepisování dvacet minut a srovnává se stejně pokaždé.'],
+ ['Čištění a doplňování dat','Doplní chybějící údaje podle číselníku a vypíše řádky, kde si nebyl jistý.','Ruční třídění z hodin na minuty — a je vidět, co je potřeba dořešit ručně.']]
+};
+
+/* Konkrétní agent pro obor: co dělá, z čeho čerpá, kdy se spouští */
+const AGENTI={
+nakup:{jm:'Hlídač smluv a lhůt',ucel:'Hlídá termíny v rámcových smlouvách a připravuje podklad na jednání.',
+  kroky:['Projdi složku se smlouvami a vytáhni platnosti, opce a lhůty na změnu ceny.','Vypiš, čemu končí lhůta do 90 dnů, seřazeno podle data.','Ke každé smlouvě přilož objem odběru za poslední rok.'],
+  zdroje:'Složka se smlouvami · export objednávek',spousteni:'Každé pondělí v 7:00 a na vyžádání'},
+admin:{jm:'Zápisy a úkoly',ucel:'Z porad dělá zápis a hlídá, co z něj vyplynulo.',
+  kroky:['Ze zápisu vytáhni úkoly: co, kdo, do kdy.','Porovnej se seznamem z minulé porady a označ nesplněné.','Připrav shrnutí na dvě obrazovky.'],
+  zdroje:'Sdílená složka se zápisy · kalendář',spousteni:'Po každé poradě, přehled v pátek'},
+finance:{jm:'Uzávěrkový pomocník',ucel:'Připravuje komentáře k odchylkám a kontroluje doklady.',
+  kroky:['Najdi odchylky nad 5 % proti rozpočtu.','Ke každé napiš návrh komentáře: příčina, dopad, opatření.','Vypiš doklady, kterým chybí náležitosti.'],
+  zdroje:'Export hlavní knihy · rozpočet · číselník středisek',spousteni:'Třetí pracovní den v měsíci'},
+it:{jm:'Provozní hlídka',ucel:'Sleduje chyby v provozu a stav účtů.',
+  kroky:['Posbírej chyby za 24 hodin a seskup je podle typu.','Označ nové typy chyb, které se dřív neobjevovaly.','Jednou týdně porovnej účty se seznamem zaměstnanců.'],
+  zdroje:'Logy · adresář uživatelů · matice oprávnění',spousteni:'Denně v 6:00, týdenní revize v pondělí'},
+vedeni:{jm:'Podklad na poradu',ucel:'Sbírá čísla a připravuje jednostránkový podklad.',
+  kroky:['Posbírej aktuální čísla z reportů a projektových přehledů.','Napiš tři hlavní sdělení a ke každému jedno rozhodnutí, které je potřeba udělat.','Vypiš úkoly z minulé porady, které nejsou hotové.'],
+  zdroje:'Reporty · zápisy z porad · projektový přehled',spousteni:'Den před poradou vedení'},
+sklad:{jm:'Hlídač skladu',ucel:'Sleduje expirace, ležáky a skluzy dodávek.',
+  kroky:['Vypiš položky s expirací do 30 dnů a bez pohybu přes 180 dnů.','Porovnej potvrzené termíny dodávek se skutečným příjmem a označ skluzy.','Připrav přehled po dodavatelích.'],
+  zdroje:'Skladové karty · objednávky · příjemky',spousteni:'Každé pondělí v 6:00'},
+obchod:{jm:'Příprava na schůzky',ucel:'Před schůzkou sestaví přehled o zákazníkovi.',
+  kroky:['Vytáhni odběry a marži zákazníka za 12 měsíců a označ změny trendu.','Dohledej veřejné zprávy o firmě za poslední měsíc, s odkazy.','Vypiš otevřené nabídky a reklamace.'],
+  zdroje:'CRM · fakturace · web',spousteni:'Ráno v den schůzky podle kalendáře'},
+hr:{jm:'Náborový pomocník',ucel:'Vede agendu inzerátů a odpovědí uchazečům.',
+  kroky:['Z popisu pozice napiš inzerát bez klišé a zkontroluj diskriminační formulace.','Připrav odpovědi uchazečům ve třech stupních.','Hlídej uchazeče bez odpovědi déle než pět dnů.'],
+  zdroje:'Popisy pozic · seznam uchazečů',spousteni:'Denně ráno, inzerát na vyžádání'},
+controlling:{jm:'Reportovací asistent',ucel:'Zařazuje náklady a připravuje komentáře k reportu.',
+  kroky:['Doplň střediska podle číselníku a vypiš nezařaditelné položky.','Spočítej odchylky a označ překročení nad 5 %.','Ke každému překročení připoj otázku pro majitele střediska.'],
+  zdroje:'Export nákladů · rozpočet · číselník',spousteni:'Po uzávěrce a na vyžádání'},
+dane:{jm:'Hlídač předpisů',ucel:'Sleduje změny a kontroluje doklady před podáním.',
+  kroky:['Sleduj novely a výklady k plněním, která fakturujeme, a upozorni jen na relevantní.','Zkontroluj náležitosti dokladů a označ chybějící údaje.','Porovnej kontrolní hlášení s evidencí a vypiš rozdíly.'],
+  zdroje:'Evidence DPH · doklady · veřejné zdroje',spousteni:'Týdně, kontrola před termínem podání'},
+pohledavky:{jm:'Upomínkový běh',ucel:'Řídí upomínání podle stáří pohledávky.',
+  kroky:['Zařaď pohledávky do pásem stáří.','Vynech zákazníky s běžící reklamací nebo splátkovým kalendářem.','Připrav text upomínky podle stupně a vypiš případy k předání právníkovi.'],
+  zdroje:'Saldokonto · evidence reklamací · dohody o splátkách',spousteni:'Každé úterý v 8:00'},
+security:{jm:'Bezpečnostní hlídka',ucel:'Posuzuje nahlášené e-maily a hlídá přístupy.',
+  kroky:['Rozeber nahlášený e-mail podle znaků phishingu a navrhni eskalaci.','Týdně projdi matici přístupů a najdi konflikty oddělení pravomocí.','Sleduj zranitelnosti k verzím, které provozujeme.'],
+  zdroje:'Schránka pro hlášení · matice oprávnění · seznam systémů',spousteni:'Průběžně, revize přístupů v pondělí'},
+vyvoj:{jm:'Údržbář repozitáře',ucel:'Drží pořádek v kódu, testech a dokumentaci.',
+  kroky:['Ke změněným souborům dopiš chybějící testy včetně okrajových případů.','Udělej první kolo code review a seřaď nálezy podle závažnosti.','Po změně rozhraní aktualizuj dokumentaci.'],
+  zdroje:'Repozitář · testovací sada · dokumentace',spousteni:'Při každém pull requestu'},
+nemovitosti:{jm:'Správce budov',ucel:'Hlídá revize, faktury za opravy a spotřeby.',
+  kroky:['Spočítej termíny revizí a upozorni na ty do 60 dnů.','Porovnej faktury za opravy s objednávkami a označ položky navíc.','Sleduj spotřeby energií po budovách a označ odskoky.'],
+  zdroje:'Evidence revizí · objednávky a faktury · faktury za energie',spousteni:'Měsíčně, revize týdně'},
+vse:{jm:'Týdenní přehled',ucel:'Sbírá, co se za týden změnilo, a připravuje shrnutí.',
+  kroky:['Posbírej podklady z domluvených zdrojů.','Vypiš, co je nové, co je po termínu a co vyžaduje rozhodnutí.','Připrav shrnutí na jednu stránku s odkazy na zdroje.'],
+  zdroje:'Sdílené složky · kalendář · e-mail',spousteni:'Každý pátek odpoledne'}
+};
+
+const STUPNE=[
+ ['Prompt s podkladem','Jednorázová práce. Napíšete zadání, přiložíte podklad, výsledek zkontrolujete.','Kdykoli. Nic se nenastavuje.'],
+ ['Projekt nebo prostor','Opakovaná situace se stejným kontextem — tým, produkt, agenda. Kontext napíšete jednou.','Když stejné pozadí vysvětlujete podruhé.'],
+ ['Trvalý postup (skill, agent)','Zapsaný postup: kroky, kritéria, šablony. Nástroj ho použije sám, když pozná zadání.','Když stejný postup vysvětlujete potřetí.'],
+ ['Agent s přístupem a plánem','Napojený na zdroje dat, běží podle plánu i bez vás a výsledek pošle sám.','Když je práce pravidelná a data leží ve firmě.']
+];
+
 /* =====================================================================
    1) NASTAVENÍ CENY — EUR za 1 milion tokenů, přepočet z USD
    ===================================================================== */
@@ -800,6 +1030,8 @@ const KURZ = 0.92;
 const VSTUP_TOK = 12000;
 const MESICNE = 200;
 const DELKA_SMENY = 8;   // požadavků z každé úrovně v jedné směně (3 úrovně = 24)
+const CIL_PCT = 75;      // cílová přesnost, proti které se měří výsledek
+const UROVNE = {1:'Úroveň 1 · základ',2:'Úroveň 2 · složitější zadání',3:'Úroveň 3 · nejtěžší případy'};
 
 const PROSTREDI = {
 claude:{
@@ -928,6 +1160,103 @@ const HINTY=[
    web ('ano'/'ne'), proc, dr (proč ne dražší), tip
    ===================================================================== */
 const UKOLY=[
+/* ---------------- DOPLNĚNÍ SPOLEČNÉ BANKY ---------------- */
+{u:1,kat:'Rychlá fakta',z:'Co znamená zkratka SLA a co v ní obvykle bývá?',k:'Narazil jste na ni ve smlouvě.',best:['rychla'],ok:['stredni'],ef:'low',efOk:[],web:'ne',
+ proc:'Ustálená zkratka. Rychlá třída ji vysvětlí okamžitě a správně.',
+ dr:'Dražší model přidá delší výklad, ne jinou definici.',
+ tip:'Přidejte „a na co si dát pozor při sjednávání" — z definice se stane užitečná rada.'},
+{u:1,kat:'Psaní',z:'Zkraťte tenhle e-mail na polovinu, ať zůstane jen podstata a prosba na konci.',k:'Osm odstavců, adresát je vytížený.',best:['rychla'],ok:['stredni'],ef:'low',efOk:['med'],web:'ne',
+ proc:'Zkracování hotového textu je jednoduchý úkon v jednom kroku.',
+ dr:'Silnější model nezkrátí líp — o výsledku rozhoduje, co označíte za podstatné.',
+ tip:'Napište, co v textu musí zůstat za každou cenu. Jinak zmizí právě to.'},
+{u:1,kat:'Rutina',z:'Napište vzorec, který ze jména a příjmení sestaví přihlašovací jméno bez diakritiky.',k:'Formát: první písmeno jména a celé příjmení.',best:['rychla'],ok:['stredni'],ef:'low',efOk:[],web:'ne',
+ proc:'Jednoduchá textová operace s jasným pravidlem.',
+ dr:'Dražší model napíše týž vzorec. Zádrhel je jen v diakritice a v duplicitách.',
+ tip:'Zeptejte se rovnou, co dělat při shodě dvou lidí — jinak si na to vzpomenete až v provozu.'},
+{u:1,kat:'Znalost',z:'Vysvětlete rozdíl mezi zálohou a závdavkem. Do pěti vět.',k:'Vysvětlujete to kolegovi.',best:['rychla'],ok:['stredni'],ef:'low',efOk:[],web:'ne',
+ proc:'Ustálené právní pojmy, které se nemění. Rychlá třída je vysvětlí správně.',
+ dr:'U dvou definic nemá dražší model co přidat.',
+ tip:'Vyžádejte si příklad, kdy se rozdíl projeví v penězích — ten si zapamatujete.'},
+{u:1,kat:'Aktuálnost',z:'Jaké jsou dnes ceny pohonných hmot a jak se změnily za měsíc?',k:'Připravujete kalkulaci dopravy.',best:['rychla'],ok:['stredni'],ef:'low',efOk:[],web:'ano',
+ proc:'Ceny se mění denně. Rychlá třída se zapnutým vyhledáváním je přesně to pravé.',
+ dr:'Bez vyhledávání dostanete ceny z doby tréninku modelu — a bude to znít jistě.',
+ tip:'Chtějte datum a zdroj u každého čísla. Bez nich se to nedá dát do kalkulace.'},
+{u:1,kat:'Kontrola',z:'Projděte tenhle text a opravte pravopis a interpunkci. Nic jiného neměňte.',k:'Půjde to na web, styl je záměrný.',best:['rychla'],ok:['stredni'],ef:'low',efOk:[],web:'ne',
+ proc:'Mechanická korektura. Rychlá třída ji zvládne a je nejlevnější.',
+ dr:'Dražší model má sklon text „vylepšit" i tam, kde jste to nechtěl.',
+ tip:'Napište výslovně „neměň slovosled ani slovní zásobu" — jinak dostanete přepsaný text.'},
+{u:1,kat:'Prezentace',z:'Udělejte z těchhle pěti odstavců osnovu na tři slidy, na každý jedno sdělení.',k:'Podklad na poradu, mluvit budete pět minut.',best:['rychla'],ok:['stredni'],ef:'low',efOk:['med'],web:'ne',
+ proc:'Krácení a strukturování krátkého textu. Rychlá třída to zvládne.',
+ dr:'Silnější model nevymyslí lepší sdělení — to plyne z toho, co chcete, aby si posluchač odnesl.',
+ tip:'Napište, co má publikum po prezentaci udělat. Osnova bez cíle se rozpadne na výčet.'},
+{u:1,kat:'Nápady',z:'Dejte deset názvů pro interní kampaň k úspoře energií.',k:'Má to být vtipné, ale ne trapné.',best:['rychla'],ok:['stredni'],ef:'low',efOk:['med'],web:'ne',
+ proc:'Generování variant je práce, kde jde o množství. Rychlá třída jich vysype dost.',
+ dr:'Dražší model nevymyslí vtipnější název — vkus je na vás. Kupujete si šíři, ne úsudek.',
+ tip:'Přidejte dva příklady toho, co se vám líbí, a dva, co ne. Zúží to pole víc než jakékoli přídavné jméno.'},
+{u:2,kat:'Ladění zadání',z:'Tenhle prompt vrací pokaždé jinak strukturovaný výstup. Přepište ho, ať je výsledek konzistentní.',k:'Používá ho pět lidí v týmu.',best:['stredni'],ok:['silna'],ef:'med',efOk:['high'],web:'ne',
+ proc:'Úprava zadání s doplněním formátu a příkladu. Střední třída to zvládne dobře.',
+ dr:'Nekonzistenci nezpůsobuje slabý model, ale vágní zadání. Dražší model ji nesrovná.',
+ tip:'Vyžádejte si do zadání ukázku požadovaného výstupu. Jeden příklad srovná formát líp než tři odstavce pokynů.'},
+{u:2,kat:'Dělení úlohy',z:'Tenhle úkol se pokaždé rozsype v půlce. Rozdělte ho na kroky, které jdou kontrolovat zvlášť.',k:'Zpracování dat, převod formátu a report v jednom zadání.',best:['stredni'],ok:['silna'],ef:'med',efOk:['high'],web:'ne',
+ proc:'Rozdělení práce na kroky. Střední třída navrhne dělení i kontrolní body.',
+ dr:'Dražší model úlohu nespojí líp — pomůže rozdělení, ne cena. Tři menší kroky porazí jeden velký.',
+ tip:'U každého kroku si vyžádejte, jak poznáte, že dopadl dobře. Bez toho se chyba přenese dál.'},
+{u:2,kat:'Data',z:'Spojte dva seznamy podle e-mailu a vypište záznamy, které jsou jen v jednom z nich.',k:'Exporty ze dvou systémů, různé formáty.',best:['stredni'],ok:['silna'],ef:'med',efOk:['low'],web:'ne',
+ proc:'Párování podle jednoznačného klíče. Práce pro střední třídu.',
+ dr:'Riziko je v různém zápisu e-mailů, ne ve slabém modelu. Řekněte, jak zacházet s velikostí písmen a mezerami.',
+ tip:'Vyžádejte si obě strany zvlášť: co chybí v prvním a co ve druhém. Jeden slitý seznam se špatně čte.'},
+{u:2,kat:'Smlouvy',z:'Porovnejte přiloženou objednávku s obchodními podmínkami protistrany a vypište, kde si odporují.',k:'Podmínky přišly jako odkaz v patičce e-mailu.',best:['stredni'],ok:['silna'],ef:'med',efOk:['high'],web:'ne',
+ proc:'Porovnání dvou dokumentů proti sobě. Střední třída rozpory najde.',
+ dr:'Silná třída se vyplatí u rozsáhlých smluv s přílohami. Objednávka proti podmínkám je jednodušší případ.',
+ tip:'Chtějte u každého rozporu citaci obou míst. Bez ní se nález nedá použít při jednání.'},
+{u:2,kat:'Objem',z:'Ze sta odpovědí z dotazníku vytáhněte opakující se témata a ke každému tři ukázky.',k:'Volný text, různá délka odpovědí.',best:['stredni'],ok:['silna'],ef:'med',efOk:['high'],web:'ne',
+ proc:'Třídění volného textu ve středním objemu. Střední třída zvládne konzistenci napříč stovkou odpovědí.',
+ dr:'Silná třída se vyplatí u tisíců záznamů nebo u jemných rozdílů mezi tématy.',
+ tip:'Nenechte si témata vymyslet — dejte jich šest až osm předem. Jinak dostanete kategorie, které nikam nevedou.'},
+{u:2,kat:'Překlad',z:'Přeložte tuhle prezentaci do angličtiny a zachovejte délku textu na slidech.',k:'Patnáct slidů, místo na slidu je pevně dané.',best:['stredni'],ok:['silna'],ef:'med',efOk:['low'],web:'ne',
+ proc:'Překlad s omezením na délku. Střední třída udrží konzistenci i limit.',
+ dr:'Dražší model nezkrátí věty líp. Klíčové je, že limit zadáte — jinak text naroste o třetinu.',
+ tip:'Napište maximální počet znaků na řádek. Anglický překlad bývá delší a rozbije rozvržení slidu.'},
+{u:2,kat:'Rozhodnutí',z:'Připravte srovnání: opravit stávající řešení, nebo pořídit nové. Kritéria a váhy zadám.',k:'Podklad pro vedoucího, rozhodnout se má do týdne.',best:['stredni'],ok:['silna'],ef:'med',efOk:['high'],web:'ne',
+ proc:'Srovnání podle kritérií, která dodáte. Střední třída ho postaví přehledně.',
+ dr:'Silná třída se vyplatí, až když do hry vstupují provázané dopady a scénáře v čase.',
+ tip:'Zadejte i to, co se stane, když se nerozhodne nic. Třetí varianta bývá tou, která nakonec vyhraje.'},
+{u:2,kat:'Firemní data',z:'Najděte v našich dokumentech, jestli už jsme podobný postup někdy popsali, a odkažte na zdroj.',k:'Dokumenty jsou na firemním úložišti.',best:['firemni'],ok:[],ef:'med',efOk:['low'],web:'ne',
+ proc:'Hledání ve vlastních dokumentech — potřebujete nástroj s přístupem k úložišti.',
+ dr:'Bez přístupu k dokumentům model odpověď vymyslí. Rozhoduje napojení, ne cena.',
+ tip:'Chtějte odkaz na konkrétní dokument a odstavec. Odpověď bez zdroje je u interních postupů bezcenná.'},
+{u:3,kat:'Návrh',z:'Navrhněte, jak u nás zavést kontrolu čtyř očí u plateb nad limit: kroky, výjimky, zastupitelnost.',k:'Malý tým, lidé se zastupují napříč rolemi.',best:['silna'],ok:['spicka','stredni'],ef:'high',efOk:['med'],web:'ne',
+ proc:'Návrh procesu s výjimkami a zastupitelností — provázaná úloha, kde se silná třída vyplatí.',
+ dr:'Špičkový model nezná vaše lidi ani jejich zástupy. Rozdíl udělá popis současného stavu.',
+ tip:'Popište, co se dnes děje, když je někdo nemocný. Právě na zastupitelnosti se kontrola čtyř očí obvykle láme.'},
+{u:3,kat:'Rozhodnutí',z:'Rozeberte, jestli tenhle proces zautomatizovat, nebo zrušit. Náklady, rizika, dopad na lidi.',k:'Proces běží deset let, nikdo neví proč.',best:['silna'],ok:['spicka','stredni'],ef:'high',efOk:['med'],web:'ne',
+ proc:'Otevřená úloha s víc možnými závěry — tady se hlubší uvažování skutečně projeví.',
+ dr:'Špičkový model nezjistí, proč proces vznikl. To musíte dohledat vy — a je to nejcennější vstup.',
+ tip:'Nechte si napsat i variantu „nechat být" s odůvodněním. Bez ní bude doporučení vždycky pro změnu.'},
+{u:3,kat:'Objem',z:'Projděte dva roky zápisů z porad a vypište rozhodnutí, která se nikdy nedotáhla.',k:'Asi devadesát zápisů v různých formátech.',best:['silna'],ok:['stredni','spicka'],ef:'med',efOk:['high'],web:'ne',
+ proc:'Velký objem s pamětí napříč dokumenty — je potřeba spárovat rozhodnutí s pozdějším plněním.',
+ dr:'Špičkový model najde totéž. Víc pomůže rozdělit to po čtvrtletích a průběžně kontrolovat.',
+ tip:'Definujte, co znamená „dotažené". Bez definice dostanete seznam všeho, co se kdy zmínilo.'},
+{u:3,kat:'Agentní běh',z:'Projděte třicet dokumentů, sjednoťte formát hlaviček a patiček a vypište, co jste změnil.',k:'Běh bez dozoru, dokumenty na sdíleném disku.',best:['silna'],ok:['spicka','stredni','firemni'],ef:'high',efOk:['med'],web:'ne',
+ proc:'Delší samostatný běh napříč soubory — cení se stabilita, aby se chyba neopakovala třicetkrát.',
+ dr:'Špičkový model hlavičky nesjednotí líp. Klíčový je závěrečný soupis změn — ten si vyžádejte.',
+ tip:'Nechte nejdřív zpracovat tři dokumenty a zkontrolujte je. Teprve pak pusťte zbytek.'},
+{u:3,kat:'Citlivá data',z:'Připravte podklad k šetření stížnosti zaměstnance: časová osa z dokumentace.',k:'Jmenovité údaje, půjde to k právníkovi.',best:['firemni'],ok:[],ef:'med',efOk:['high'],web:'ne',
+ proc:'Jmenovité personální údaje patří výhradně do schváleného firemního nástroje.',
+ dr:'Rozhoduje, kam se podklad dostane, ne kdo ho napíše lépe. Na to ceník neodpovídá.',
+ tip:'Vyžádejte si u každé události odkaz na zdroj. Osa bez dokladů při šetření neobstojí.'},
+{u:3,kat:'Kontrola',z:'Projděte tenhle interní předpis a najděte místa, která si odporují s jiným přiloženým předpisem.',k:'Dva předpisy, dohromady osmdesát stran.',best:['silna'],ok:['stredni','spicka'],ef:'high',efOk:['med'],web:'ne',
+ proc:'Křížová kontrola dvou dlouhých dokumentů s odkazy mezi články. Silná třída chybuje méně.',
+ dr:'Špičkový model najde podobné rozpory. Zásadnější je, aby výstup obsahoval citace — jinak se nálezy nedají ověřit.',
+ tip:'Chtějte tabulku: článek A — článek B — v čem si odporují. Prózu nikdo neprojde.'},
+{u:3,kat:'Ladění zadání',z:'Sestavte zadání, které bude pět lidí používat pro stejnou práci se stejným výsledkem.',k:'Dnes to každý dělá jinak a výstupy se nedají porovnat.',best:['silna'],ok:['stredni'],ef:'high',efOk:['med'],web:'ne',
+ proc:'Návrh zadání pro víc lidí s ošetřením okrajových případů — složitější, než se zdá.',
+ dr:'Špičkový model nezná, jak to dnes dělá těch pět lidí. Sesbírejte jejich postupy a přiložte je.',
+ tip:'Vyžádejte si i seznam situací, kdy zadání nestačí a má se zeptat člověka. To odliší postup od přání.'},
+{u:3,kat:'Prezentace',z:'Připravte dvě verze téhož sdělení: pro vedení a pro tým, který to bude dělat.',k:'Stejná změna, dvě velmi odlišná publika.',best:['silna'],ok:['stredni','spicka'],ef:'med',efOk:['high'],web:'ne',
+ proc:'Dvě verze s odlišným důrazem a jazykem — vyžaduje udržet konzistenci faktů při změně vyznění.',
+ dr:'Dražší model nezná vaše publikum. Popište, co která skupina umí a čeho se bojí.',
+ tip:'Napište, na co se každé publikum zeptá jako první. Podle toho se pozná, čím má text začít.'},
 /* ---------------- OBOROVÉ ÚLOHY: NEMOVITOSTI A SPRÁVA BUDOV ---------------- */
 {u:1,kat:'Rychlá fakta',r:['nemovitosti'],z:'Jaký je rozdíl mezi běžnou údržbou a opravou a kdo co u nájmu hradí?',k:'Nájemce se ptá po prasklé baterii.',best:['rychla'],ok:['stredni'],ef:'low',efOk:[],web:'ne',
  proc:'Ustálené rozlišení z nájemního práva. Rychlá třída ho vysvětlí okamžitě a správně.',
@@ -1876,7 +2205,7 @@ const UKOLY=[
 const $=s=>document.querySelector(s);
 let env=null,role=null,mode=null,poradi=[],idx=0,volbaModel=null,volbaEffort=null,volbaWeb=null,zodpovezeno=false;
 let body=0,bodyMax=0,eur=0,eurOpt=0,hotovo=0;
-let ukazane=new Set(),dalsiSekvencni=0,zaznamy=[];
+let ukazane=new Set(),dalsiSekvencni=0,zaznamy=[],stavy=[],minula=null;
 
 function zamichej(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
 function E(){return PROSTREDI[env];}
@@ -1896,6 +2225,12 @@ function ulozBest(){
     if(!stary||pct>stary.pct||(pct===stary.pct&&nas<stary.nas))
       localStorage.setItem(kl,JSON.stringify({pct:pct,nas:+nas.toFixed(2),kdy:new Date().toISOString().slice(0,10)}));
   }catch(e){}
+}
+function ulozPosledni(pct,nas){
+  try{localStorage.setItem('aid-last-'+role+'-'+env+'-'+mode,JSON.stringify({pct:pct,nas:+nas.toFixed(2)}));}catch(e){}
+}
+function nactiPosledni(){
+  try{return JSON.parse(localStorage.getItem('aid-last-'+role+'-'+env+'-'+mode)||'null');}catch(e){return null;}
 }
 function nactiBest(m){
   try{return JSON.parse(localStorage.getItem('aid-best-'+role+'-'+env+'-'+m)||'null');}catch(e){return null;}
@@ -1939,16 +2274,33 @@ $('#btnZmenitRole').addEventListener('click',()=>{
   window.scrollTo({top:0,behavior:'smooth'});
 });
 function vyberUk(v){return Array.isArray(v)?v[Math.floor(Math.random()*v.length)]:v;}
+function naplnPraxi(){
+  const p=PRAXE[role]||PRAXE.vse, a=AGENTI[role]||AGENTI.vse;
+  $('#praxeKarty').innerHTML=p.map(x=>
+    '<div class="pcard"><h3>'+x[0]+'</h3><p>'+x[1]+'</p>'+
+    '<div class="vysledek"><b>Co to udělalo</b>'+x[2]+'</div></div>').join('');
+  $('#zebrikBox').innerHTML=STUPNE.map(z=>
+    '<div class="zcard"><h4>'+z[0]+'</h4><p>'+z[1]+'</p><span class="kdy">'+z[2]+'</span></div>').join('');
+  $('#agentObor').textContent=ROLE[role].jm;
+  $('#agentBox').innerHTML=
+    '<div class="hl">Ukázka zadání agenta</div><h3>'+a.jm+'</h3>'+
+    '<p class="ucel">'+a.ucel+'</p>'+
+    '<ol>'+a.kroky.map(k=>'<li>'+k+'</li>').join('')+'</ol>'+
+    '<div class="paticka"><div><b>Z čeho čerpá</b>'+a.zdroje+'</div>'+
+    '<div><b>Kdy se spustí</b>'+a.spousteni+'</div></div>';
+}
 function naplnKde(){
   const R=ROLE[role], pr=PRIPADY_R[role];
   $('#kdeUvod').textContent=R.uvod;
   $('#ucKarty').innerHTML=PRIPADY.map((p,i)=>
-    '<div class="uccard"><span class="cislo">'+String(i+1).padStart(2,'0')+' \u00B7 '+p.k+'</span>'+
-    '<h3>'+p.t+'</h3><div class="zadani-uk">'+((pr&&pr[i])?vyberUk(pr[i]):p.z)+'</div>'+
-    '<dl><dt>Co získáte</dt><dd class="zisk">'+p.zisk+'</dd>'+
-    '<dt>Pozor na</dt><dd>'+p.pozor+'</dd></dl></div>').join('');
+    '<div class="uccard"><div class="uchd"><span class="cis">'+String(i+1).padStart(2,'0')+'</span>'+
+    '<span class="kchip">'+p.k+'</span></div>'+
+    '<h3>'+p.t+'</h3><div class="zadani-uk">\u201E'+((pr&&pr[i])?vyberUk(pr[i]):p.z)+'\u201C</div>'+
+    '<dl><dt class="zisk-l">Co získáte</dt><dd class="zisk">'+p.zisk+'</dd>'+
+    '<dt class="pozor-l">Pozor na</dt><dd>'+p.pozor+'</dd></dl></div>').join('');
   $('#usporyTab').innerHTML=R.uspory.map(r=>
     '<tr><td>'+r[0]+'</td><td class="n">'+r[1]+'</td><td class="n">'+r[2]+'</td><td>'+r[3]+'</td></tr>').join('');
+  naplnPraxi();
 }
 $('#btnJineUk').addEventListener('click',naplnKde);
 
@@ -1990,24 +2342,61 @@ function start(){
     const zbytek=zamichej(mix?p:p.filter(x=>!x.r&&R.kat.indexOf(x.kat)<0));
     return zamichej(oborove.concat(prioritni,zbytek).slice(0,DELKA_SMENY));
   };
-  poradi=[...vzorek(1),...vzorek(2),...vzorek(3)];
+  poradi=smichejUrovne(vzorek(1),vzorek(2),vzorek(3));
   idx=0;body=0;bodyMax=0;eur=0;eurOpt=0;hotovo=0;
   ukazane=new Set();dalsiSekvencni=0;zaznamy=[];
+  stavy=new Array(poradi.length).fill(null);
+  minula=nactiPosledni();
   zavriHint(); $('#verdiktBox').innerHTML=''; $('#vysledkyBox').innerHTML='';
   $('#btnOdeslat').classList.remove('hidden'); $('#btnPreskocit').classList.remove('hidden');
-  vykresliVolby(); nactiUkol(); prekresliUkazatele();
+  vykresliVolby(); nactiUkol(); prekresliUkazatele(); prekresliOsu();
+}
+/* Směna se nemíchá po blocích — úrovně se prokládají, aby těžké přišlo hned
+   zkraje a rytmus se během směny měnil. Každý motiv má dvě úlohy z každé úrovně. */
+const MOTIVY=[[3,1,2,1,3,2],[2,3,1,2,1,3],[1,3,2,3,1,2],[2,1,3,1,2,3]];
+function smichejUrovne(a1,a2,a3){
+  const zasob={1:a1.slice(),2:a2.slice(),3:a3.slice()};
+  const m=zamichej(MOTIVY.map(x=>x.slice()));
+  const i=m.findIndex(x=>x[0]!==1);       // ať směna nezačíná nejlehčí úlohou
+  if(i>0){const t=m[0];m[0]=m[i];m[i]=t;}
+  const out=[];
+  m.forEach(mot=>mot.forEach(u=>{ if(zasob[u].length) out.push(zasob[u].shift()); }));
+  [1,2,3].forEach(u=>zasob[u].forEach(x=>out.push(x)));
+  return out;
+}
+function prekresliOsu(){
+  const n=poradi.length;
+  let html='';
+  for(let u=1;u<=3;u++){
+    const pozice=[]; poradi.forEach((t,i)=>{ if(t.u===u) pozice.push(i); });
+    const aktualni=(idx<n && poradi[idx] && poradi[idx].u===u);
+    const zbyva=pozice.filter(i=>i>=idx).length;
+    const nezacata=pozice.every(i=>i>idx);
+    let cells='';
+    pozice.forEach(i=>{ cells+='<i class="'+(i===idx?'ted':(stavy[i]||''))+'"></i>'; });
+    html+='<div class="useg'+(aktualni?' akt':(nezacata?' pozdeji':''))+'"><div class="cells">'+cells+'</div>'+
+      '<div class="jm">'+UROVNE[u]+(aktualni?' \u25C0 te\u010F':(zbyva?'':' \u00B7 hotovo'))+'</div></div>';
+  }
+  $('#osaGrid').innerHTML=html;
+  $('#osaPoz').textContent=Math.min(idx+1,n);
+  $('#osaCelkem').textContent=n;
 }
 function vykresliVolby(){
-  $('#modelChips').innerHTML=E().modely.map(m=>
-    '<button class="chip" aria-pressed="false" data-model="'+m.id+'">'+
-    '<span><span class="nm">'+m.jm+'</span><span class="vd">'+TRIDY[m.tr]+'</span></span>'+
-    '<span class="coins">'+fmt(cena(m,'med'))+'</span></button>').join('');
+  const ceny=E().modely.map(m=>cena(m,'med')), cmax=Math.max.apply(null,ceny);
+  $('#modelChips').innerHTML=E().modely.map((m,i)=>{
+    const pom=ceny[i]/cmax, tridaB=pom<=0.34?'':(pom<=0.7?'w':'e');
+    const kdy=m.kdy.split(/[.,]/)[0].trim();
+    return '<button class="chip" aria-pressed="false" data-model="'+m.id+'">'+
+    '<span class="mnm"><span class="nm">'+m.jm+'</span><span class="vd">'+kdy+'</span></span>'+
+    '<span class="tr">'+TRIDY[m.tr]+'</span>'+
+    '<span class="lad"><i class="'+tridaB+'" style="width:'+Math.max(3,pom*100).toFixed(0)+'%"></i></span>'+
+    '<span class="coins">'+fmt(ceny[i])+'</span></button>';}).join('');
   $('#effortChips').innerHTML=E().uvaz.map(e=>
     '<button class="chip" aria-pressed="false" data-effort="'+e.id+'">'+
-    '<span><span class="nm">'+e.jm+'</span><span class="vd">'+e.pop+' · '+(e.out/1000)+' tis. tokenů</span></span></button>').join('');
-  $('#webChips').innerHTML=[['ne','Vypnuto','model odpovídá z paměti'],['ano','Zapnuto','dohledá aktuální stav']].map(w=>
+    '<span class="nm">'+e.jm+'</span><span class="vd">'+(e.out/1000)+' tis. tokenů · '+e.pop+'</span></button>').join('');
+  $('#webChips').innerHTML=[['ne','Vypnuto','z paměti'],['ano','Zapnuto','dohledá stav']].map(w=>
     '<button class="chip" aria-pressed="false" data-web="'+w[0]+'">'+
-    '<span><span class="nm">'+w[1]+'</span><span class="vd">'+w[2]+'</span></span></button>').join('');
+    '<span class="nm">'+w[1]+'</span><span class="vd">'+w[2]+'</span></button>').join('');
 }
 $('#modelChips').addEventListener('click',ev=>{const b=ev.target.closest('[data-model]');if(!b||zodpovezeno)return;
   volbaModel=b.dataset.model;oznac('#modelChips','data-model',volbaModel);zkontrolujStav();});
@@ -2016,17 +2405,26 @@ $('#effortChips').addEventListener('click',ev=>{const b=ev.target.closest('[data
 $('#webChips').addEventListener('click',ev=>{const b=ev.target.closest('[data-web]');if(!b||zodpovezeno)return;
   volbaWeb=b.dataset.web;oznac('#webChips','data-web',volbaWeb);zkontrolujStav();});
 function oznac(sel,attr,val){$(sel).querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.getAttribute(attr)===val?'true':'false'));}
-function zkontrolujStav(){$('#btnOdeslat').disabled=!(volbaModel&&volbaEffort&&volbaWeb);}
+function zkontrolujStav(){
+  $('#btnOdeslat').disabled=!(volbaModel&&volbaEffort&&volbaWeb);
+  const el=$('#volbaCena');
+  if(volbaModel&&volbaEffort){
+    const c=cena(modelById(volbaModel),volbaEffort);
+    el.innerHTML='Vaše volba: <b>'+fmt(c)+'</b> · odhad ročně '+fmtMes(c*MESICNE*12);
+  } else el.textContent='';
+}
 
 function nactiUkol(){
   if(idx>=poradi.length){konec();return;}
   const t=poradi[idx];
   $('#tKat').textContent=t.kat;$('#tLvl').textContent='Úroveň '+t.u;
   $('#tPoradi').textContent='Požadavek '+(idx+1)+' / '+poradi.length;
+  prekresliOsu();
   $('#tZadani').textContent=t.z;$('#tKontext').textContent=t.k;
   volbaModel=null;volbaEffort=null;volbaWeb=null;zodpovezeno=false;
   oznac('#modelChips','data-model',null);oznac('#effortChips','data-effort',null);oznac('#webChips','data-web',null);
   $('#btnOdeslat').textContent='Odeslat požadavek';$('#btnOdeslat').disabled=true;
+  $('#volbaCena').textContent='';
   $('#verdiktBox').innerHTML='';
 }
 function optimum(t){
@@ -2056,6 +2454,7 @@ function vyhodnot(){
   else{stamp='MIMO';tridaS='s-bad';nadpis='Tudy ne.';}
 
   zaznamy.push({t:t,mJm:m.jm,ef:uv(volbaEffort).jm,web:volbaWeb,moje:moje,opt:opt,zisk:zisk,stamp:stamp,tridaS:tridaS});
+  stavy[idx]=(tridaS==='s-good')?'ok':(tridaS==='s-warn'?'warn':'bad');
 
   if(mode==='test'){
     zodpovezeno=true;
@@ -2096,15 +2495,27 @@ function vyhodnot(){
   else if(rozdil<-0.0005) radekRozdil='<br><span class="uspora">Ušetřeno oproti optimu: '+fmt(-rozdil)+' — ale za cenu kvality</span>';
   else radekRozdil='<br><span class="uspora">Levněji už to nejde.</span>';
 
+  const tridaV=tridaS==='s-good'?'':(tridaS==='s-warn'?' v-warn':' v-bad');
+  const barvaC=tridaS==='s-good'?'c-good':(tridaS==='s-warn'?'c-warn':'c-bad');
+  const rocne=Math.max(0,rozdil)*MESICNE*12;
   $('#verdiktBox').innerHTML=
-   '<div class="verdict"><span class="stamp '+tridaS+'">'+stamp+'</span>'+
+   '<div class="verdict'+tridaV+'"><span class="stamp '+tridaS+'"><i>'+stamp+'</i></span>'+
+   '<div class="vhl">Verdikt · požadavek '+(idx+1)+' · úroveň '+t.u+'</div>'+
    '<h4>'+nadpis+'</h4>'+
-   '<p class="duvod"><b>Proč tahle třída</b>'+t.proc+'</p>'+
-   '<p class="duvod"><b>Proč ne dražší</b>'+t.dr+'</p>'+
+   '<div class="vstat">'+
+     '<div><span>Body</span><b>'+String(zisk).replace('.',',')+'<small> / 6</small></b></div>'+
+     '<div><span>Útrata</span><b class="'+barvaC+'">'+fmt(moje)+'</b></div>'+
+     '<div><span>Optimum</span><b class="c-good">'+fmt(opt)+'</b></div>'+
+     '<div><span>'+(rocne>0.5?'Ročně navíc':'Ročně navíc')+'</span><b>'+fmtMes(rocne)+'</b></div>'+
+   '</div>'+
+   '<div class="vcols">'+
+     '<div><b>Proč tahle třída</b><p>'+t.proc+'</p></div>'+
+     '<div><b>Proč ne dražší</b><p>'+t.dr+'</p></div>'+
+     '<div><b>Tip k zadání</b><p>'+t.tip+'</p></div>'+
+   '</div>'+
    nasobBox+
    '<div class="ucet">Optimum ('+nejTr+'): '+nejJm+' · '+uv(t.ef).jm+' · vyhledávání '+(t.web==='ano'?'zapnuto':'vypnuto')+' — '+fmt(opt)+'<br>'+
-   'Vaše volba: '+m.jm+' · '+uv(volbaEffort).jm+' · vyhledávání '+(volbaWeb==='ano'?'zapnuto':'vypnuto')+' — '+fmt(moje)+webRadek+radekRozdil+'</div>'+
-   '<div class="tip"><b>Tip k zadání</b>'+t.tip+'</div></div>';
+   'Vaše volba: '+m.jm+' · '+uv(volbaEffort).jm+' · vyhledávání '+(volbaWeb==='ano'?'zapnuto':'vypnuto')+' — '+fmt(moje)+webRadek+radekRozdil+'</div></div>';
 
   zodpovezeno=true;$('#btnOdeslat').disabled=false;
   $('#btnOdeslat').textContent=(idx+1<poradi.length)?'Další požadavek':'Uzavřít směnu';
@@ -2130,24 +2541,37 @@ function vyhodnot(){
 }
 function prekresliUkazatele(){
   const pct=bodyMax?Math.round(body/bodyMax*100):0;
-  $('#gPresnost').textContent=bodyMax?pct+' %':'—';
+  $('#gPresnost').innerHTML=bodyMax?(pct+'<small> %</small>'):'—';
   $('#gPresnostBar').style.width=pct+'%';
-  $('#gPocet').textContent=hotovo+' / '+poradi.length;
+  $('#gCil').textContent=CIL_PCT;
+  $('#gCilRyska').style.left=CIL_PCT+'%';
+  $('#gMinula').textContent=minula?('Minulá směna '+minula.pct+' %'):'Zatím nehráno';
+  $('#gPocet').textContent=hotovo+' z '+poradi.length+' požadavků';
   $('#gPresnostHint').textContent=!bodyMax?'Kolik bodů z možných jste zatím získal.'
     :pct>=85?'Vybíráte, jako byste to platil ze svého.'
     :pct>=60?'Solidní výsledek. Body ztrácíte hlavně na míře uvažování a na vyhledávání.'
     :'Zkuste častěji volit střední třídu a číst si zdůvodnění u odpovědí.';
-  const nas=eurOpt?(eur/eurOpt):0;
+  const nas=eurOpt?(eur/eurOpt):0, navic=Math.max(0,eur-eurOpt);
   $('#gNaklad').textContent=fmt(eur);
   $('#gNasobek').textContent=eurOpt?nas.toFixed(2).replace('.',',')+'\u00D7 optimum':'—';
-  $('#gNakladBar').style.width=Math.min(100,nas/3*100)+'%';
-  $('#gNakladHint').textContent=!eurOpt?'Kolik by stálo odbavit tyhle požadavky vaší volbou.'
-    :'Optimum by stálo '+fmt(eurOpt)+'. Rozdíl '+fmt(Math.max(0,eur-eurOpt))+' na '+hotovo+' požadavcích je '+fmtMes(Math.max(0,(eur-eurOpt)/hotovo*MESICNE))+' měsíčně na jednoho člověka.';
+  $('#gVedle').innerHTML=eurOpt?('Optimum '+fmt(eurOpt)+'<br>Rozdíl '+(navic>0.0005?'+':'')+fmt(navic)):'Optimum —<br>Rozdíl —';
+  const podil=eurOpt?Math.min(100,eurOpt/Math.max(eur,eurOpt)*100):0;
+  $('#gNakladBar').style.width=podil+'%';
+  $('#gNakladNavic').style.left=podil+'%';
+  $('#gNakladNavic').style.width=(eurOpt?(100-podil):0)+'%';
+  if(!eurOpt){$('#gNakladHint').textContent='Kolik by stálo odbavit tyhle požadavky vaší volbou.';}
+  else{
+    const mes=navic/hotovo*MESICNE;
+    $('#gNakladHint').innerHTML=navic>0.0005
+      ?('Při tomhle tempu <b>'+fmtMes(mes)+' měsíčně</b> a <b>'+fmtMes(mes*12)+' ročně</b> na jednoho člověka navíc.')
+      :('Držíte se na optimu. Levněji už to při zachování kvality nejde.');
+  }
 }
 function konec(){
   const pct=bodyMax?Math.round(body/bodyMax*100):0;
   const nas=eurOpt?(eur/eurOpt):1;
-  ulozBest();
+  ulozBest(); ulozPosledni(pct,nas); minula={pct:pct,nas:+nas.toFixed(2)};
+  prekresliOsu();
   $('#tKat').textContent='Konec směny';$('#tLvl').textContent=(mode==='test'?'Ostrý test':'Školení');$('#tPoradi').textContent='';
   let veta;
   if(nas>=0.95&&nas<=1.05) veta='Odbaveno. Držel jste se u optima — takhle to má vypadat.';
@@ -2204,7 +2628,7 @@ $('#hintModal').addEventListener('click',e=>{if(e.target.id==='hintModal')zavriH
 document.addEventListener('keydown',e=>{if(e.key==='Escape')zavriHint();});
 $('#btnOdeslat').addEventListener('click',()=>{
   if(!zodpovezeno){vyhodnot();}else{idx++;nactiUkol();window.scrollTo({top:0,behavior:'smooth'});}});
-$('#btnPreskocit').addEventListener('click',()=>{idx++;nactiUkol();});
+$('#btnPreskocit').addEventListener('click',()=>{stavy[idx]='skip';idx++;nactiUkol();});
 $('#btnReset').addEventListener('click',()=>start());
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
